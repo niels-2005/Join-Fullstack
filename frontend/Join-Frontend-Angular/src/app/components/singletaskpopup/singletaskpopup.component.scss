@@ -1,0 +1,470 @@
+.position-absolute {
+  position: absolute;
+  top: 200px;
+  left: 800px;
+}
+
+.single-task-details {
+  position: relative;
+  background-color: white !important;
+  z-index: 1000;
+  width: 500px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  h2 {
+    font-size: 50px;
+    font-weight: bolder;
+    line-height: 50px !important;
+  }
+}
+
+.category-style {
+  width: 150px;
+  border-radius: 8px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 8px;
+}
+
+.single-task-prio-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 115px;
+  padding: 6px;
+  border-radius: 8px;
+  span {
+    color: white;
+    font-size: 20px;
+  }
+}
+
+.bg-red {
+  background-color: #FF3D00;
+}
+
+.bg-yellow {
+  background-color: #FFA800;
+}
+
+.bg-green {
+  background-color: #7AE229;
+}
+
+.right-priority-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.task-titles-font-weight-bold {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.assigned-to-containerrr {
+  display: flex;
+  gap: 15px;
+}
+
+.assigned-to-containerrrr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #d1d1d1 !important;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: black;
+  width: 400px;
+  img {
+    object-fit: contain;
+  }
+  span {
+    font-size: 20px;
+  }
+}
+
+.task-description {
+  font-size: 20px;
+}
+
+.date-styling {
+  font-size: 20px;
+}
+
+.assigned-to-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  span {
+    font-size: 20px;
+  }
+}
+
+.delete-edit-container {
+  width: 100px;
+  height: 50px;
+  display: flex;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  cursor: pointer;
+}
+
+.delete-span {
+  width: 50px;
+  background-image: url('../../../assets/img/black-delete.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 1px solid #2A3647;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transition: 0.1s ease-in-out;
+  &:hover {
+  background-image: url('../../../assets/img/blue-delete.png') !important;
+  border: 1px solid #29ABE2;
+  }
+}
+
+.edit-span {
+  width: 50px;
+  background-color: #2A3647;
+  background-image: url('../../../assets/img/white-pencil.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: 0.1s ease-in-out;
+  &:hover {
+    background-color: #29ABE2;
+  }
+}
+
+.cross-image-task {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.edit-task-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  min-height: 600px;
+  min-width: 500px;
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  textarea {
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    width: 400px;
+    resize: none;
+    color: black;
+    font-size: 18px;
+    min-height: 100px;
+    &::placeholder {
+      font-size: 18px;
+      color: #d1d1d1;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.span-titles {
+  font-size: 22px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.input-styling {
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: black;
+  height: 40px;
+  width: 400px;
+  &::placeholder {
+    font-size: 18px;
+    color: #d1d1d1;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.prio-container {
+  display: flex;
+  max-width: 400px;
+  justify-content: space-between;
+}
+
+.prio-content-styling {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 125px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  }
+ span {
+  font-size: 18px;
+  margin-right: 20px;
+ }
+}
+
+.contact-dropdown-edit {
+  display: flex;
+  flex-direction: column;
+  margin-left: -13px !important;
+  background-color: white;
+  width: 400px;
+  padding: 10px;
+    border-left: 1px solid #D1D1D1;
+    border-right: 1px solid #D1D1D1;
+  }
+
+  .ok-span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    font-size: 20px;
+    background-color: #2A3647;
+    cursor: pointer;
+    width: 75px;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: -15px;
+    &:hover {
+      background-color: #29ABE2;
+      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  @media(max-width: 1670px){
+    .position-absolute {
+      left: 700px;
+    }
+  }
+
+  @media(max-width: 1500px){
+    .position-absolute {
+      left: 570px;
+    }
+  }
+
+  @media(max-width: 1350px){
+    .position-absolute {
+      left: 500px;
+    }
+  }
+
+@media(max-width: 1200px){
+  .position-absolute {
+    left: 380px;
+  }
+}
+
+@media(max-width: 1050px){
+  .position-absolute {
+    left: 300px;
+  }
+}
+
+@media(max-width: 1000px){
+  .position-absolute {
+    left: 250px;
+  }
+}
+
+@media(max-width: 900px){
+  .position-absolute {
+    left: 185px;
+  }
+}
+
+@media(max-width: 800px){
+  .position-absolute {
+    left: 135px;
+  }
+}
+
+@media(max-width: 700px){
+  .single-task-details {
+    width: 100vw;
+    min-height: 80vh;
+  }
+  .position-absolute {
+    left: 0;
+    right: 0;
+    top: 100px;
+    bottom: 0;
+  }
+  .edit-task-container {
+    width: 100vw;
+    min-height: 80vh;
+  }
+}
+
+@media(max-width: 500px){
+  .input-styling {
+    width: 350px;
+  }
+  textarea {
+    width: 350px !important;
+  }
+  .prio-content-styling {
+    width: 100px !important;
+  }
+  .prio-container {
+    justify-content: flex-start;
+    gap: 25px;
+    span {
+      margin-right: 30px;
+    }
+  }
+  .bg-urgent {
+    background-position: right 5px center;
+  }
+
+  .bg-medium{
+    background-position: right 5px center;
+  }
+
+  .bg-low {
+    background-position: right 5px center;
+  }
+  .assigned-to-containerrrr {
+    width: 350px !important;
+  }
+  .contact-dropdown-edit {
+    width: 350px !important;
+  }
+  .edit-task-container {
+    padding: 15px !important;
+    min-width: auto !important;
+  }
+  .single-task-details {
+    padding: 15px !important;
+  }
+}
+
+@media(max-width: 475px){
+  .position-absolute {
+    top: 75px;
+  }
+  .single-task-details {
+    min-height: 85vh;
+  }
+  .edit-task-container {
+    min-height: 85vh;
+  }
+  .cross-image-task {
+    right: 25px;
+    top: 25px;
+  }
+}
+
+@media(max-width: 400px){
+  .input-styling {
+    width: 300px;
+  }
+  textarea {
+    width: 300px !important;
+  }
+  .prio-content-styling {
+    width: 85px !important;
+    span {
+      font-size: 16px;
+    }
+  }
+  .prio-container {
+    justify-content: flex-start;
+    gap: 20px;
+    span {
+      margin-right: 30px;
+    }
+  }
+  .bg-urgent {
+    background-position: right 5px center;
+  }
+
+  .bg-medium{
+    background-position: right 5px center;
+  }
+
+  .bg-low {
+    background-position: right 5px center;
+  }
+  .assigned-to-containerrrr {
+    width: 300px !important;
+  }
+  .contact-dropdown-edit {
+    width: 300px !important;
+  }
+  .edit-task-container {
+    padding: 10px !important;
+    min-width: auto !important;
+  }
+  .task-details-container {
+    padding: 10px;
+  }
+  .single-task-details {
+    padding: 10px !important;
+  }
+}
+
+@media(max-width: 330px){
+  .input-styling {
+    width: 285px;
+  }
+  textarea {
+    width: 285px !important;
+  }
+  .prio-content-styling {
+    width: 85px !important;
+    span {
+      font-size: 16px;
+    }
+  }
+  .prio-container {
+    justify-content: flex-start;
+    gap: 15px;
+    span {
+      margin-right: 30px;
+    }
+  }
+  .assigned-to-containerrrr {
+    width: 285px !important;
+  }
+  .contact-dropdown-edit {
+    width: 285px !important;
+  }
+
+}

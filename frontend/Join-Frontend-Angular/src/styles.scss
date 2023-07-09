@@ -1,0 +1,910 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/inter-v12-latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/inter-v12-latin-500.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/inter-v12-latin-600.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/inter-v12-latin-700.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/inter-v12-latin-800.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/fonts/inter-v12-latin-900.woff2') format('woff2');
+}
+
+* {
+  font-family: 'Inter', sans-serif !important;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  background-color: #F6F7F8;
+}
+
+.mat-typography {
+  line-height: normal !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.groundbar {
+  display: none !important;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+.mt-50 {
+  margin-top: 50px !important;
+}
+
+.mt-25 {
+  margin-top: 25px !important;
+}
+
+.mt-16 {
+  margin-top: 16px !important;
+}
+
+.mt-0 {
+  margin-top: 0px !important;
+}
+
+.ml-mr-24 {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.mr-128 {
+  margin-right: 128px;
+}
+
+.mr-64 {
+  margin-right: 64px;
+}
+
+.mb-56 {
+  margin-bottom: 56px !important;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.height-100 {
+  height: 100px !important;
+}
+
+.width-100 {
+  width: 100px !important;
+}
+
+.width-200 {
+  width: 200px !important;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.font-size-64 {
+  font-size: 64px !important;
+}
+
+.font-size-48 {
+  font-size: 48px;
+}
+
+.font-size-40 {
+  font-size: 40px;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.button-style-dark-bg {
+  background-color: #2A3647;
+  color: white;
+  &:hover{
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.button-style-white-bg {
+  border: 1px solid #2A3647 !important;
+  background-color: white;
+  &:hover{
+    border: 1px solid #29ABE2 !important;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.content-container {
+  margin-top: 100px;
+  margin-left: 250px;
+}
+
+.vertikal-line {
+  height: 60px;
+  width: 3px;
+}
+
+.bg-color-blue {
+  background-color: #29ABE2;
+}
+
+.bg-color-grey {
+  background-color: #D1D1D1;
+}
+
+.transition-ease-in-out {
+  transition: 0.1s ease-in-out;
+}
+
+// Login, Register, Forgot-My-Password Classes (DRY)
+
+.login-register-fmp-container {
+  width: 650px;
+  height: 550px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 30px;
+  position: relative;
+  h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+}
+
+.blue-line {
+  background-color: #29ABE2;
+  height: 3px;
+  width: 125px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input-label {
+  position: relative;
+  img {
+    position: absolute;
+    top: 27px;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}
+
+.login-input {
+  width: 422px;
+    height: 50px;
+    border-style: unset;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: right 30px center;
+    padding-left: 15px;
+    padding-top: 5px;
+    font-size: 20px;
+    &::placeholder{
+      font-size: 20px;
+      color: #D1D1D1;
+  }
+  &:focus{
+    outline: none;
+    border: 1px solid #D1D1D1;
+  }
+}
+
+.blue-arrow-left-image {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  cursor: pointer;
+}
+
+//
+.summary-headline {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  h1 {
+    font-size: 64px;
+    font-weight: bold;
+  }
+  span {
+    font-size: 28px;
+  }
+}
+
+.error-message {
+  color: red;
+  height: 30px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  max-width: 422px !important;
+  text-align: center;
+}
+
+//
+.add-task-button-container {
+  display: flex;
+  gap: 30px;
+  justify-content: flex-end;
+  margin-top: 250px;
+}
+
+.cancel-button-style {
+  height: 50px;
+  width: 130px;
+  font-size: 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-image: url('./assets/img/cross-icon.png');
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 35px;
+  &:hover {
+    background-image: url('./assets/img/blue-cross.png');
+  }
+}
+
+.create-task-button-style {
+  border-style: unset;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 22px;
+  height: 50px;
+  width: 180px;
+  padding-right: 35px;
+  background-image: url('./assets/img/done.png');
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 35px;
+}
+
+// contact popUp Styles
+
+.contact-popup-container {
+  position: relative;
+  display: flex;
+}
+
+.contact-popup-left-content {
+  display: flex;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #2A3647;
+  padding: 168px 40px;
+  img {
+    height: 75px;
+    object-fit: contain;
+  }
+  h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+  }
+  p {
+    font-size: 24px;
+    color: white;
+    margin: 0;
+    margin-bottom: 15px;
+  }
+}
+
+.horizontal-line {
+  height: 2px;
+  width: 100px;
+  background-color: #29ABE2;
+}
+
+.contact-popup-right-content {
+  display: flex;
+  align-items: center;
+  background-color: white !important;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  gap: 56px;
+  padding: 0 40px;
+}
+
+.contact-user-container {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  justify-content: center;
+  background-color: #d1d1d1;
+  margin-bottom: 30px;
+  img {
+    height: 50px;
+  }
+}
+
+.contact-form-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cross-image {
+  position: absolute;
+  right: 50px;
+  top: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+// Priority Styling for add Task and edit task
+.prio-content-style {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 125px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  }
+ span {
+  font-size: 22px;
+  margin-right: 20px;
+ }
+}
+
+.bg-urgent {
+  background-image: url('./assets/img/urgent.icon2.png');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-color: white;
+}
+
+.bg-medium{
+  background-image: url('./assets/img/urgent-icon3.png');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-color: white;
+}
+
+.bg-low {
+  background-image: url('./assets/img/urgent-icon4.png');
+  background-repeat: no-repeat;
+  background-position: right 25px center;
+  background-color: white;
+}
+
+.bg-urgent-while-clicked {
+  background-image: url('./assets/img/urgent-prio-white.png') !important;
+  background-color: #ff3d00 !important;
+  color: white;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.bg-medium-while-clicked {
+  background-image: url('./assets/img/medium-prio-white.png') !important;
+  background-color: #ffa800 !important;
+  color: white;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.bg-low-while-clicked {
+  background-image: url('./assets/img/low-prio-white.png') !important;
+  background-color: rgb(122,226,41) !important;
+  color: white;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+//  assign contacts dropdown styling for add task and edit task
+
+.assigned-to-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #d1d1d1 !important;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: black;
+  height: 50px;
+  width: 500px;
+  img {
+    object-fit: contain;
+  }
+  span {
+    font-size: 22px;
+  }
+}
+
+.select-contacts-to-assign {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-dropdown {
+  display: flex;
+  flex-direction: column;
+  margin-left: -13px !important;
+  background-color: white;
+  width: 500px;
+  padding: 12px;
+    border-left: 1px solid #D1D1D1;
+    border-right: 1px solid #D1D1D1;
+    border-bottom: 1px solid #D1D1D1;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+//  styling for add task and popup add task
+
+.add-task-container {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+  h1 {
+    font-size: 64px;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+}
+
+.x-image {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.add-task-content-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-task-content-left {
+  display: flex;
+  flex-direction: column;
+  textarea {
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    width: 500px;
+    resize: none;
+    color: black;
+    font-size: 18px;
+    height: 150px;
+    &::placeholder {
+      font-size: 18px;
+      color: #d1d1d1;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.span-titles {
+  font-size: 22px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding-left: 5px;
+}
+
+.input-style {
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: black;
+  height: 50px;
+  width: 500px;
+  &::placeholder {
+    font-size: 18px;
+    color: #d1d1d1;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.selected-inputs-style {
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: black;
+  height: 50px;
+  width: 500px;
+  &::placeholder {
+    font-size: 18px;
+    color: black;
+    color: #d1d1d1;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.add-task-content-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.prio-container {
+  display: flex;
+  justify-content: space-between;
+  height: 55px;
+}
+
+.subtask-input {
+ &::placeholder {
+  color: #D1D1D1 !important;
+ }
+}
+
+.add-task-button-container {
+  display: flex;
+  gap: 30px;
+  justify-content: flex-end;
+  margin-top: 250px;
+}
+
+.cancel-button-style {
+  height: 50px;
+  width: 130px;
+  font-size: 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-image: url('./assets/img/cross-icon.png');
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 35px;
+  &:hover {
+    background-image: url('./assets/img/blue-cross.png');
+  }
+}
+
+.create-task-button-style {
+  border-style: unset;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 22px;
+  height: 50px;
+  width: 180px;
+  padding-right: 35px;
+  background-image: url('./assets/img/done.png');
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 35px;
+}
+
+.input-color-container {
+  position: relative;
+}
+
+.color-picker {
+  position: absolute;
+  right: 40px;
+  top: 12px;
+}
+
+
+.category-color-container {
+  display: flex;
+  padding-left: 20px;
+  gap: 15px;
+  span {
+    cursor: pointer;
+  }
+}
+
+.category-color {
+  height: 20px;
+  width: 20px;
+  padding: 1px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.input-color-indicator {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.input-checkbox {
+  width: 15px !important;
+  height: 15px !important;
+  cursor: pointer;
+}
+
+.task-added-to-board {
+  display: flex;
+  gap: 20px;
+  padding: 20px 30px;
+  background-color: #2A3647;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  color: white;
+  border-radius: 15px;
+  animation: slideUp 0.5s ease-in-out forwards;
+  span {
+    font-size: 22px;
+  }
+}
+
+@media(max-width: 1315px){
+  .summary-container {
+    padding-left: 50px !important;
+  }
+  .board-container {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+  .add-task-container {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+  .legal-notice-container-main {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+  .help-container {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+}
+
+@media(max-width: 1000px){
+  .mat-typography h1 {
+    line-height: 50px !important;
+  }
+  .login-register-fmp-container {
+    width: 500px !important;
+    input {
+      width: 300px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+    }
+  }
+  .form-container {
+    align-items: center;
+  }
+  h1 {
+    font-size: 60px !important;
+  }
+  .width-850 {
+    width: 500px !important;
+  }
+  .sitebar-d-none {
+    display: none !important;
+  }
+  .content-container {
+    margin-left: 0 !important;
+  }
+  .kanban-header-container {
+    left: 0 !important;
+  }
+  .headline {
+    padding-left: 50px !important;
+  }
+  .groundbar {
+    display: flex !important;
+  }
+  .kanban-join-logo {
+    display: block !important;
+  }
+  .summary-headline {
+    justify-content: center;
+  }
+}
+
+@media(max-width: 680px){
+  .kanban-header-profile-container {
+    margin-right: 10px !important;
+  }
+  .kanban-join-logo {
+    padding-left: 10px !important;
+  }
+  .summary-container {
+    padding-top: 25px !important;
+  }
+  .add-task-container {
+    padding-top: 25px !important;
+    h1 {
+      margin-bottom: 0 !important;
+    }
+  }
+  .summary-headline {
+    gap: 10px;
+    flex-direction: column;
+    div {
+      display: none;
+    }
+  }
+  .login-register-fmp-container {
+    h1 {
+      margin-top: 0 !important;
+    }
+    input {
+      height: 40px;
+      font-size: 18px;
+      &::placeholder {
+        font-size: 18px;
+      }
+    }
+  }
+  .blue-line {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .form-container {
+    margin-top: 0 !important;
+  }
+  .form-input-label {
+    img {
+      top: 20px;
+    }
+  }
+}
+
+@media(max-width: 545px){
+  .login-register-fmp-container {
+    width: 400px !important;
+  }
+  h1 {
+    font-size: 48px !important;
+  }
+}
+
+@media(max-width: 475px){
+  .groundbar {
+    img {
+      height: 25px !important;
+    }
+    span {
+      font-size: 16px !important;
+    }
+  }
+  .content-container {
+    margin-top: 75px !important;
+  }
+  .summary-headline {
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+  .summary-container {
+    padding-top: 15px !important;
+  }
+}
+
+@media(max-width: 420px){
+  .login-register-fmp-container {
+    width: 350px !important;
+  }
+  .login-register-fmp-container {
+    input {
+      width: 250px !important;
+      height: 40px;
+      font-size: 16px;
+      &::placeholder {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media(max-width: 375px){
+  .login-register-fmp-container {
+    width: 300px !important;
+  }
+  .blue-arrow-left-image {
+    top: 15px;
+    left: 15px;
+  }
+  h1 {
+    font-size: 40px !important;
+  }
+  .groundbar {
+    padding: 10px !important;
+    span {
+      font-size: 14px !important;
+    }
+  }
+}

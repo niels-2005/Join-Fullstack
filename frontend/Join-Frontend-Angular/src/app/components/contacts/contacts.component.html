@@ -1,0 +1,114 @@
+<app-sitebar id="sitebar"></app-sitebar>
+<app-kanbanprojecttoolheader id="kanban-header"></app-kanbanprojecttoolheader>
+<app-groundbar id="groundbar"></app-groundbar>
+
+<div class="contents-container" id="contacts-container">
+  <div class="contacts-sitebar">
+    <div
+      class="show-contact-details-mobile-container d-none padding-mobile"
+      id="single-contact-details"
+    >
+      <h1>Contacts</h1>
+      <p>Better with a team</p>
+      <div class="horizontal-line-mobile"></div>
+      <div *ngIf="selectedContact" class="contact-initials-and-name ml-0 mt-10">
+        <span
+          class="contact-initials height-100 width-100 border-white width-height-mobile"
+          [ngStyle]="{ 'background-color': selectedContact.color }"
+          >{{ getInitials(selectedContact?.name) }}</span
+        >
+        <h3 class="single-contact-h3">{{ selectedContact?.name }}</h3>
+      </div>
+      <div *ngIf="selectedContact" class="contact-edit-contact ml-0">
+        <span class="contact-information-d-none-mobile"
+          >Contact Information</span
+        >
+        <span
+          class="contact-edit-pencil"
+          (click)="openTaskField('edit-contact-field', 'contacts-container')"
+          >Edit Contact
+        </span>
+      </div>
+      <div *ngIf="selectedContact" class="contact-email-and-phone ml-0">
+        <span class="strong-span">Email</span>
+        <span class="blue-email">{{ selectedContact?.email }}</span>
+        <span class="strong-span">Phone</span>
+        <span class="photo-span">{{ selectedContact?.phone }}</span>
+      </div>
+    </div>
+
+    <div id="all-contact-details">
+      <div
+        *ngFor="let initial of contacts | keyvalue"
+        class="contact-details-container"
+      >
+        <h2>{{ initial.key }}</h2>
+        <div class="horizontal-line"></div>
+        <div
+          *ngFor="let contact of initial.value"
+          (click)="onContactClick(contact)"
+        >
+          <div class="contact-details">
+            <span
+              class="contact-initials"
+              [ngStyle]="{ 'background-color': contact.color }"
+              >{{ getInitials(contact.name) }}</span
+            >
+            <div class="contact-name-and-email">
+              <span class="name-span">{{ contact.name }}</span>
+              <span class="email-span">{{ contact.email }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contacts-content-right">
+    <div class="contacts-headline">
+      <h1>Contacts</h1>
+      <div class="vertikal-line bg-color-blue"></div>
+      <span>Better with a team</span>
+    </div>
+    <div *ngIf="selectedContact" class="contact-initials-and-name">
+      <span
+        class="contact-initials height-100 width-100 border-white"
+        [ngStyle]="{ 'background-color': selectedContact.color }"
+        >{{ getInitials(selectedContact?.name) }}</span
+      >
+      <h3>{{ selectedContact?.name }}</h3>
+    </div>
+    <div *ngIf="selectedContact" class="contact-edit-contact">
+      <span>Contact Information</span>
+      <span
+        class="contact-edit-pencil"
+        (click)="openTaskField('edit-contact-field', 'contacts-container')"
+        >Edit Contact
+      </span>
+    </div>
+    <div *ngIf="selectedContact" class="contact-email-and-phone">
+      <span class="strong-span">Email</span>
+      <span class="blue-email">{{ selectedContact?.email }}</span>
+      <span class="strong-span">Phone</span>
+      <span class="photo-span">{{ selectedContact?.phone }}</span>
+    </div>
+  </div>
+  <button
+    class="new-contact-button button-style-dark-bg transition-ease-in-out"
+    (click)="openTaskField('add-task-field', 'contacts-container')"
+  >
+    New contact
+  </button>
+</div>
+
+<app-addcontactpopup
+  id="add-task-field"
+  class="add-task-container-position"
+></app-addcontactpopup>
+
+<app-editcontactpopup
+  id="edit-contact-field"
+  class="add-task-container-position"
+  *ngIf="selectedContact"
+  [selectedContact]="selectedContact"
+></app-editcontactpopup>
+>

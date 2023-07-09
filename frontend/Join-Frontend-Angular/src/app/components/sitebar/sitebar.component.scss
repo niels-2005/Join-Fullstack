@@ -1,0 +1,88 @@
+.fixed-sitebar-container {
+  width: 250px;
+  background-color: #2A3647;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.join-logo-image {
+  height: 130px;
+  object-fit: cover;
+}
+
+.route-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 300px;
+}
+
+.four-links-container {
+  width: 250px;
+}
+
+.link-container {
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: 0.1s ease-in-out;
+  &:hover {
+    background-color: #091931 !important;
+  }
+  a {
+    width: 80px;
+    font-size: 18px;
+    color: white;
+    margin-left: 35px;
+  }
+  img {
+    height: 25px;
+    position: absolute;
+    left: 40px;
+  }
+}
+
+.board-img {
+  position: absolute;
+  height: 20px !important;
+  left: 40px !important;
+}
+
+.legal-notice-container {
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: 0.1s ease-in-out;
+  &:hover {
+    background-color: #091931 !important;
+  }
+  a {
+    font-size: 18px;
+    color: #cdcdcd;
+    margin-left: 50px;
+  }
+  img {
+    height: 25px;
+    position: absolute;
+    left: 37px;
+  }
+}
+
+.link-container.active {
+  background-color: #091931 !important;
+}
+

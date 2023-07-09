@@ -1,0 +1,256 @@
+<app-sitebar id="sitebar"></app-sitebar>
+<app-kanbanprojecttoolheader id="kanban-header"></app-kanbanprojecttoolheader>
+<app-groundbar></app-groundbar>
+
+<div class="content-container">
+  <div class="board-container" id="board-container">
+    <div class="board-headline-container">
+      <div class="board-headline-left-container">
+        <h1>Board</h1>
+        <img
+          src="./assets/img/white-add-icon.png"
+          alt="Add Task Icon"
+          routerLink="/add-task"
+          class="add-task-link-img d-none"
+        />
+      </div>
+      <div class="board-headline-right-container">
+        <div class="board-input-container">
+          <input
+            type="text"
+            placeholder="Find Task"
+            [(ngModel)]="filterValue"
+          />
+          <div class="vertikal-line input-vertikal-line-pos"></div>
+          <img src="./assets/img/search-icon.png" alt="Search Icon" />
+        </div>
+        <button
+          class="add-task-button"
+          (click)="openTaskField('add-task-field', 'board-container')"
+        >
+          Add task <img src="./assets/img/white-add-icon.png" alt="Add Icon" />
+        </button>
+      </div>
+    </div>
+    <div cdkDropListGroup class="task-container">
+      <div class="flexbox-board-container">
+        <h2>To do</h2>
+        <div
+          id="cdk-drop-list-0"
+          cdkDropList
+          [cdkDropListData]="todo"
+          class="placeholder-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="each-task-styling-container"
+            *ngFor="let task of getFilteredTasks(todo)"
+            cdkDrag
+            [cdkDragData]="task"
+            (click)="onTaskClick(task)"
+          >
+            <div [style.background-color]="task.color" class="category-style">
+              {{ task.category }}
+            </div>
+            <h3>{{ task.title }}</h3>
+            <span class="task-description">{{ task.description }}</span>
+            <div class="workers-and-priority-container">
+              <div class="show-user-length-container">
+                <span>{{
+                  task.assigned_to_names
+                    ? task.assigned_to_names.split(",").length
+                    : 0
+                }}</span>
+                <img src="./assets/img/contact-user.png" alt="User Image" />
+              </div>
+              <img
+                *ngIf="task.priority === 'U'"
+                src="./assets/img/urgent.icon2.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+              <img
+                *ngIf="task.priority === 'M'"
+                src="./assets/img/urgent-icon3.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+              <img
+                *ngIf="task.priority === 'L'"
+                src="./assets/img/urgent-icon4.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flexbox-board-container">
+        <h2>In progress</h2>
+        <div
+          id="cdk-drop-list-1"
+          cdkDropList
+          [cdkDropListData]="inProgress"
+          class="placeholder-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="each-task-styling-container"
+            *ngFor="let task of getFilteredTasks(inProgress)"
+            cdkDrag
+            [cdkDragData]="task"
+            (click)="onTaskClick(task)"
+          >
+            <div [style.background-color]="task.color" class="category-style">
+              {{ task.category }}
+            </div>
+            <h3>{{ task.title }}</h3>
+            <span class="task-description">{{ task.description }}</span>
+            <div class="workers-and-priority-container">
+              <div class="show-user-length-container">
+                <span>{{
+                  task.assigned_to_names
+                    ? task.assigned_to_names.split(",").length
+                    : 0
+                }}</span>
+                <img src="./assets/img/contact-user.png" alt="User Image" />
+              </div>
+              <img
+                *ngIf="task.priority === 'U'"
+                src="./assets/img/urgent.icon2.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+              <img
+                *ngIf="task.priority === 'M'"
+                src="./assets/img/urgent-icon3.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+              <img
+                *ngIf="task.priority === 'L'"
+                src="./assets/img/urgent-icon4.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flexbox-board-container">
+        <h2>Awaiting Feedback</h2>
+        <div
+          id="cdk-drop-list-2"
+          cdkDropList
+          [cdkDropListData]="awaitingFeedback"
+          class="placeholder-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="each-task-styling-container"
+            *ngFor="let task of getFilteredTasks(awaitingFeedback)"
+            cdkDrag
+            [cdkDragData]="task"
+            (click)="onTaskClick(task)"
+          >
+            <div [style.background-color]="task.color" class="category-style">
+              {{ task.category }}
+            </div>
+            <h3>{{ task.title }}</h3>
+            <span class="task-description">{{ task.description }}</span>
+            <div class="workers-and-priority-container">
+              <div class="show-user-length-container">
+                <span>{{
+                  task.assigned_to_names
+                    ? task.assigned_to_names.split(",").length
+                    : 0
+                }}</span>
+                <img src="/assets/img/contact-user.png" alt="User Image" />
+              </div>
+              <img
+                *ngIf="task.priority === 'U'"
+                src="./assets/img/urgent.icon2.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+              <img
+                *ngIf="task.priority === 'M'"
+                src="./assets/img/urgent-icon3.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+              <img
+                *ngIf="task.priority === 'L'"
+                src="./assets/img/urgent-icon4.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flexbox-board-container">
+        <h2>Done</h2>
+        <div
+          id="cdk-drop-list-3"
+          cdkDropList
+          [cdkDropListData]="done"
+          class="placeholder-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="each-task-styling-container"
+            *ngFor="let task of getFilteredTasks(done)"
+            cdkDrag
+            [cdkDragData]="task"
+            (click)="onTaskClick(task)"
+          >
+            <div [style.background-color]="task.color" class="category-style">
+              {{ task.category }}
+            </div>
+            <h3>{{ task.title }}</h3>
+            <span class="task-description">{{ task.description }}</span>
+            <div class="workers-and-priority-container">
+              <div class="show-user-length-container">
+                <span>{{
+                  task.assigned_to_names
+                    ? task.assigned_to_names.split(",").length
+                    : 0
+                }}</span>
+                <img src="./assets/img/contact-user.png" alt="User Image" />
+              </div>
+              <img
+                *ngIf="task.priority === 'U'"
+                src="./assets/img/urgent.icon2.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+              <img
+                *ngIf="task.priority === 'M'"
+                src="./assets/img/urgent-icon3.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+              <img
+                *ngIf="task.priority === 'L'"
+                src="./assets/img/urgent-icon4.png"
+                alt="Prio Icon"
+                class="priority-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-singletaskpopup [selectedTask]="selectedTask"></app-singletaskpopup>
+
+<app-addtaskboardbutton
+  id="add-task-field"
+  class="add-task-container-position"
+></app-addtaskboardbutton>

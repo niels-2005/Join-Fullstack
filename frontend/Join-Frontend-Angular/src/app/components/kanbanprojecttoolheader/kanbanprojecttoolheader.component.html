@@ -1,0 +1,35 @@
+<div class="kanban-header-container">
+  <span class="headline sitebar-d-none">Kanban Project Management Tool</span>
+  <img
+    src="./assets/img/Capa1.png"
+    alt="Join Icon"
+    class="kanban-join-logo"
+    routerLink="/summary"
+  />
+  <div class="kanban-header-profile-container">
+    <img
+      src="./assets/img/f-zeich-neben-profil.png"
+      alt="Help About Join"
+      class="help-question-image"
+      routerLink="/help"
+    />
+    <img
+      src="./assets/img/profil-photo.png"
+      alt="Profile Picture"
+      class="profile-picture-image"
+      (click)="toggleLogout()"
+    />
+    <div class="handle-navigation-container">
+      <span id="logout-span" class="d-none" (click)="logoutUser()"
+        >Log out</span
+      >
+      <span
+        id="legal-notice-mobile"
+        class="d-none"
+        routerLink="/legal-notice"
+        *ngIf="isViewSmallEnough"
+        >Legal Notice</span
+      >
+    </div>
+  </div>
+</div>

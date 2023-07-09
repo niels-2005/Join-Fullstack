@@ -1,0 +1,71 @@
+<div class="contact-popup-container">
+  <img
+    src="./assets/img/cross-icon.png"
+    alt="X Icon"
+    class="cross-image"
+    (click)="closeContactField('add-task-field', 'contacts-container')"
+  />
+  <div class="contact-popup-left-content">
+    <img src="./assets/img/Join-icon.png" alt="Join Logo" />
+    <h1>Add contact</h1>
+    <p>Tasks are better with a team</p>
+    <div class="horizontal-line"></div>
+  </div>
+  <div class="contact-popup-right-content">
+    <div class="contact-user-container">
+      <img src="./assets/img/contact-user.png" alt="User Image" />
+    </div>
+    <form class="contact-form-container">
+      <label class="form-input-label">
+        <input
+          type="text"
+          name="name"
+          class="login-input"
+          placeholder="Name"
+          [(ngModel)]="name"
+          required
+        />
+        <img src="./assets/img/user.png" alt="User Symbol" />
+      </label>
+      <span id="username-error" class="error-message"></span>
+      <label class="form-input-label">
+        <input
+          type="email"
+          name="email"
+          required
+          [(ngModel)]="email"
+          class="login-input"
+          placeholder="Email"
+        />
+        <img src="./assets/img/mail-icon.png" alt="Mailsymbol" />
+      </label>
+      <span id="email-error" class="error-message"></span>
+      <label class="form-input-label">
+        <input
+          type="number"
+          name="phone"
+          class="login-input"
+          placeholder="Phone"
+          [(ngModel)]="phone"
+          required
+        />
+        <img src="./assets/img/phone-icon.png" alt="User Symbol" />
+      </label>
+      <span id="phone-error" class="error-message"></span>
+      <div class="add-task-button-container mt-50">
+        <button
+          class="button-style-white-bg cancel-button-style transition-ease-in-out"
+          (click)="closeContactField('add-task-field', 'contacts-container')"
+        >
+          Cancel
+        </button>
+        <button
+          class="button-style-dark-bg create-task-button-style transition-ease-in-out width-200"
+          (click)="createContact()"
+        >
+          Create contact
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,234 @@
+.login-top-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+  margin-right: 100px;
+}
+
+.move-logo-animation {
+  height: 150px;
+  object-fit: cover;
+  animation: moveLogo 0.9s ease-in-out forwards;
+}
+
+@keyframes moveLogo {
+  0% {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(3);
+  }
+  100% {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.success-sign-up {
+  position: absolute;
+  width: 75%;
+  height: 15%;
+  background-color: #2A3647;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  span {
+    font-size: 24px;
+    color: white;
+  }
+}
+
+.sign-in-container {
+  span {
+    font-size: 24px;
+    margin-right: 16px;
+  }
+  button {
+    width: 91px;
+    font-weight: 700;
+    height: 51px;
+    border-radius: 8px;
+    font-size: 16px;
+    border-style: unset;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 5px;
+    padding: 16px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    &:hover {
+      background-color: #29ABE2;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.position-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.fade-in-animation {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in forwards 0.7s;
+}
+
+.log-in-button-container{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  button {
+    width: 170px;
+    height: 50px;
+    border-radius: 8px;
+    border-style: unset;
+    font-size: 21px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    font-weight: bold;
+  }
+}
+
+.user-login-button {
+  background-color: #2A3647;
+  color: white;
+  &:hover{
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.guest-login-button {
+  border: 1px solid #2A3647 !important;
+  background-color: white;
+  &:hover{
+    border: 1px solid #29ABE2 !important;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.forgot-my-password-container {
+  margin-left: 35px;
+  display: flex;
+  input {
+    cursor: pointer;
+  }
+  span {
+    margin-left: 10px;
+    font-size: 17px;
+  }
+}
+
+.fmp-span {
+  cursor: pointer;
+    margin-left: 60px !important;
+    font-size: 17px;
+    text-decoration: none;
+    color: #29ABE2;
+    &:hover {
+      text-decoration: underline;
+    }
+}
+
+@media(max-width: 1000px){
+  .forgot-my-password-container {
+    margin-left: 0;
+    input {
+      width: 20px !important;
+    }
+  }
+  .fmp-span {
+    margin-left: 10px !important;
+  }
+  .log-in-button-container {
+    gap: 10px;
+  }
+  .user-login-button {
+    font-size: 19px !important;
+    width: 140px !important;
+  }
+  .guest-login-button {
+    font-size: 19px !important;
+    width: 140px !important;
+  }
+}
+
+@media(max-width: 680px){
+  .flex-direc-column-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .login-top-container {
+    justify-content: center;
+    margin-right: 0;
+    img {
+      height: 100px;
+    }
+  }
+  .position-container {
+    margin-top: 200px;
+  }
+  .log-in-button-container {
+    flex-direction: column;
+    margin-top: 25px;
+    button {
+      width: 200px !important;
+    }
+  }
+  .forgot-my-password-container {
+    display: flex;
+    gap: 10px;
+    flex-direction: column-reverse !important;
+    width: 300px;
+    input {
+      height: 15px !important;
+      margin-left: 0px !important;
+    }
+  }
+  .fmp-span {
+    margin-left: 0 !important;
+  }
+}
+
+@media(max-width: 545px){
+  .login-top-container {
+    margin-top: 25px;
+    img {
+      height: 75px;
+      z-index: 100;
+    }
+  }
+  .position-container {
+    margin-top: 150px;
+  }
+}
+
+@media(max-width: 420px){
+  .sign-in-container {
+    span {
+      font-size: 20px;
+    }
+  }
+  .forgot-my-password-container {
+    margin-left: 50px;
+  }
+  .log-in-button-container {
+    margin-top: 10px;
+    button {
+      width: 150px !important;
+    }
+  }
+}
+

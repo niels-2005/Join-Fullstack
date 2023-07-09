@@ -1,0 +1,113 @@
+<div class="login-register-fmp-container">
+  <img
+    src="./assets/img/Pfeil-links.png"
+    alt="Blue Arrow Left"
+    class="blue-arrow-left-image"
+    (click)="switchToLoginContainer()"
+  />
+  <h1>Sign up</h1>
+  <div class="blue-line"></div>
+  <form class="form-container mt-16" (ngSubmit)="signUp()">
+    <label class="form-input-label">
+      <input
+        type="text"
+        class="register-input"
+        placeholder="Username"
+        name="username"
+        [(ngModel)]="username"
+        required
+      />
+      <img src="./assets/img/user.png" alt="Usersymbol" />
+    </label>
+    <span id="username-error" class="error-message"></span>
+    <label class="form-input-label">
+      <input
+        type="email"
+        class="register-input"
+        placeholder="Email"
+        name="email"
+        [(ngModel)]="email"
+        required
+      />
+      <img src="./assets/img/mail-icon.png" alt="Mailsymbol" />
+    </label>
+    <span id="email-error" class="error-message"></span>
+    <label class="form-input-label">
+      <input
+        type="password"
+        class="register-input"
+        placeholder="Password"
+        id="password-input-register"
+        name="password1"
+        [(ngModel)]="password1"
+        required
+      />
+      <img
+        src="./assets/img/password-dont-see-image.png"
+        alt="Locksymbol"
+        (click)="
+          showOrHidePassword(
+            'password-input-register',
+            'show-password-image-register',
+            'hide-password-image-register'
+          )
+        "
+        id="hide-password-image-register"
+      />
+      <img
+        class="d-none"
+        id="show-password-image-register"
+        src="./assets/img/password-see-image.png"
+        alt="Locksymbol"
+        (click)="
+          showOrHidePassword(
+            'password-input-register',
+            'show-password-image-register',
+            'hide-password-image-register'
+          )
+        "
+      />
+    </label>
+    <span id="password1-error" class="error-message"></span>
+    <label class="form-input-label">
+      <input
+        type="password"
+        class="register-input"
+        placeholder="Password again"
+        id="password-input-register2"
+        name="password2"
+        [(ngModel)]="password2"
+        required
+      />
+      <img
+        src="./assets/img/password-dont-see-image.png"
+        alt="Locksymbol"
+        (click)="
+          showOrHidePassword(
+            'password-input-register2',
+            'show-password-image-register2',
+            'hide-password-image-register2'
+          )
+        "
+        id="hide-password-image-register2"
+      />
+      <img
+        class="d-none"
+        id="show-password-image-register2"
+        src="./assets/img/password-see-image.png"
+        alt="Locksymbol"
+        (click)="
+          showOrHidePassword(
+            'password-input-register2',
+            'show-password-image-register2',
+            'hide-password-image-register2'
+          )
+        "
+      />
+    </label>
+    <span id="password2-error" class="error-message"></span>
+    <div class="justify-content-center mt-16">
+      <button class="user-sign-up-button">Sign up</button>
+    </div>
+  </form>
+</div>

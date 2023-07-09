@@ -1,0 +1,133 @@
+@media(max-width: 1315px){
+  h1 {
+    font-size: 56px !important;
+  }
+  .login-input {
+    width: 350px !important;
+  }
+  .contact-popup-right-content {
+    gap: 20px !important;
+    padding: 0px 20px !important;
+  }
+  .create-task-button-style {
+    font-size: 20px !important;
+    width: 175px !important;
+    background-position: right 5px center;
+  }
+  .cancel-button-style {
+    font-size: 20px !important;
+    width: 100px !important;
+    background-position: right 5px center;
+  }
+  .cross-image {
+    right: 20px !important;
+  }
+}
+
+@media(max-width: 1100px){
+  h1 {
+    font-size: 44px !important;
+  }
+  p {
+    font-size: 20px !important;
+  }
+}
+
+@media(max-width: 1000px){
+  .contact-popup-container {
+    flex-direction: column;
+  }
+  .contact-popup-left-content {
+    padding: 100px 40px !important;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 30px;
+    align-items: center;
+    img {
+      display: none;
+    }
+  }
+  h1 {
+    font-size: 56px !important;
+  }
+  .contact-user-container {
+    position: absolute;
+    top: 295px;
+    left: 150px;
+    border: 2px solid white;
+  }
+  .contact-popup-right-content {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 30px;
+    padding: 40px 20px !important;
+  }
+  .cancel-button-style {
+    display: none;
+  }
+  .add-task-button-container {
+    margin-top: 15px !important;
+    justify-content: center;
+  }
+}
+
+@media(max-width: 680px){
+    .form-input-label {
+      img {
+        top: 25px !important;
+      }
+    }
+}
+
+@media(max-width: 550px){
+  h1 {
+    font-size: 48px !important;
+    margin-bottom: 10px;
+  }
+  .contact-popup-left-content {
+    padding: 30px 20px 50px 20px !important;
+  }
+  .contact-user-container {
+    top: 175px !important;
+    left: 142px;
+  }
+  .contact-popup-right-content {
+    padding: 20px !important;
+  }
+
+}
+
+@media(max-width: 400px){
+  h1 {
+    font-size: 40px !important;
+  }
+  p {
+    font-size: 18px !important;
+  }
+  .contact-popup-left-content {
+    padding: 30px 20px 50px 20px !important;
+  }
+  .login-input {
+    width: 300px !important;
+    font-size: 18px !important;
+    &::placeholder {
+      font-size: 18px !important;
+    }
+  }
+  .contact-user-container {
+    left: 130px;
+    width: 75px !important;
+    height: 75px !important;
+    img {
+      height: 35px;
+    }
+  }
+}
+
+
+@media(max-width: 360px){
+  .login-input {
+    width: 250px !important;
+  }
+  .contact-user-container {
+    left: 95px !important;
+  }
+}

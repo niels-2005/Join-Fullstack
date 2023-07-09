@@ -1,0 +1,57 @@
+.help-container {
+  padding: 50px 100px 100px 100px;
+  h1 {
+    font-size: 64px;
+    font-weight: bold;
+  }
+  h2 {
+    margin-top: 50px;
+    font-size: 40px;
+    margin-bottom: 50px;
+
+  }
+  p {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    margin: 0;
+    margin-bottom: 25px;
+  }
+  b{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 27px;
+  }
+}
+
+@media(max-width: 680px){
+  p {
+    font-size: 20px !important;
+  }
+  h2 {
+    font-size: 32px !important;
+    margin: 25px 0 !important;
+  }
+  b {
+    font-size: 24px !important;
+  }
+}
+
+@media(max-width: 500px){
+  .help-container {
+    padding: 25px 25px 100px !important;
+  }
+  p {
+    font-size: 18px !important;
+  }
+  b {
+    font-size: 22px !important;
+  }
+}
+
+@media(max-width: 375px) {
+  b {
+    margin-right: 10px !important;
+  }
+}

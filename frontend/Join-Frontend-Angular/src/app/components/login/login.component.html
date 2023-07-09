@@ -1,0 +1,140 @@
+<div class="flex-direc-column-mobile">
+  <div class="login-top-container">
+    <img
+      src="./assets/img/Capa1.png"
+      alt="Join Logo"
+      class="move-logo-animation"
+    />
+    <div
+      class="sign-in-container fade-in-animation"
+      id="sign-in-button-container"
+    >
+      <span>Not a Join user?</span>
+      <button
+        (click)="
+          switchContainer(
+            'sign-in-button-container',
+            'login-container',
+            'register-container'
+          )
+        "
+      >
+        Sign up
+      </button>
+    </div>
+    <div class="height-100"></div>
+  </div>
+
+  <div class="position-container">
+    <div
+      class="login-register-fmp-container fade-in-animation"
+      id="login-container"
+    >
+      <div class="success-sign-up" *ngIf="signUpSuccess">
+        <span>Sign-up successful</span>
+      </div>
+      <h1>Log in</h1>
+      <div class="blue-line"></div>
+      <form class="form-container mt-16">
+        <label class="form-input-label">
+          <input
+            type="text"
+            name="username"
+            class="login-input"
+            placeholder="Username"
+            [(ngModel)]="username"
+            required
+          />
+          <img src="./assets/img/user.png" alt="User Symbol" />
+        </label>
+        <span id="username-error-login" class="error-message"></span>
+        <label class="form-input-label">
+          <input
+            type="email"
+            name="email"
+            required
+            [(ngModel)]="email"
+            class="login-input"
+            placeholder="Email"
+          />
+          <img src="./assets/img/mail-icon.png" alt="Mailsymbol" />
+        </label>
+        <span id="email-error-login" class="error-message"></span>
+        <label class="form-input-label">
+          <input
+            type="password"
+            name="password"
+            required
+            [(ngModel)]="password"
+            class="login-input"
+            placeholder="Password"
+            id="password-input"
+          />
+          <img
+            src="./assets/img/password-dont-see-image.png"
+            alt="Locksymbol"
+            (click)="
+              showOrHidePassword(
+                'password-input',
+                'show-password-image',
+                'hide-password-image'
+              )
+            "
+            id="hide-password-image"
+          />
+          <img
+            class="d-none"
+            id="show-password-image"
+            src="./assets/img/password-see-image.png"
+            alt="Locksymbol"
+            (click)="
+              showOrHidePassword(
+                'password-input',
+                'show-password-image',
+                'hide-password-image'
+              )
+            "
+          />
+        </label>
+        <span id="password-error-login" class="error-message"></span>
+        <div class="forgot-my-password-container">
+          <div>
+            <input
+              type="checkbox"
+              name="rememberMe"
+              [(ngModel)]="rememberMe"
+              (click)="
+                rememberMe
+                  ? saveUserToLocalStorage()
+                  : deleteUserFromLocalStorage()
+              "
+            />
+            <span>Remember me</span>
+          </div>
+          <span
+            class="fmp-span"
+            (click)="
+              switchContainer(
+                'sign-in-button-container',
+                'login-container',
+                'fmp-container'
+              )
+            "
+            >Forgot my password</span
+          >
+        </div>
+        <div class="log-in-button-container">
+          <button class="user-login-button" (click)="login()">Log in</button>
+          <button class="guest-login-button" (click)="guestLogin()">
+            Guest Log in
+          </button>
+        </div>
+      </form>
+    </div>
+    <app-register class="d-none" id="register-container"></app-register>
+    <app-forgot-my-password
+      class="d-none"
+      id="fmp-container"
+    ></app-forgot-my-password>
+  </div>
+</div>
