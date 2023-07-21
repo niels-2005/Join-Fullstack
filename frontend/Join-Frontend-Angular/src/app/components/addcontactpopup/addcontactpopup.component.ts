@@ -15,8 +15,8 @@ export class AddcontactpopupComponent {
 
   constructor(private popupService: AddtaskfieldserviceService, private contactService: ContactserviceService) {}
 
-  closeContactField(id1: string, id2: string){
-    this.popupService.closeTaskField(id1, id2);
+  closeContactField(id1: string, id2: string, id3: string){
+    this.popupService.closeTaskField(id1, id2, id3, '');
   }
 
   private getHeaders(): Headers {
@@ -32,6 +32,7 @@ export class AddcontactpopupComponent {
       method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify({
+        "created_from": localStorage.getItem('username'),
         "name": this.normalizeName(this.name),
         "email": this.email,
         "phone": this.phone
@@ -47,8 +48,7 @@ export class AddcontactpopupComponent {
       const data = await response.json();
 
       if (response.ok) {
-        console.log('Contact creation successful');
-        this.closeContactField('add-task-field', 'contacts-container');
+        this.closeContactField('add-task-field', 'contacts-container', '');
         this.contactService.getContacts();
       } else {
         this.showContactCreationErrorMessage(data);

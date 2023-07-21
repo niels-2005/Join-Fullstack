@@ -52,11 +52,11 @@ export class SingletaskpopupComponent implements OnInit {
       document.getElementById(id2)!.classList.remove(removedClassOne);
       document.getElementById(id3)!.classList.remove(removedClassTwo);
       this.selectedPriority = prio;
-      console.log(this.selectedPriority);
     }, 100);
   }
 
   toggleContact(contact: any, event: Event) {
+    event.preventDefault();
     event.stopPropagation();
     contact.checked = !contact.checked;
     this.updateAssignedTo();
@@ -127,10 +127,8 @@ export class SingletaskpopupComponent implements OnInit {
       const json = await resp.json();
 
       if (resp.ok) {
-        console.log('Task update successful');
         window.location.reload();
       } else {
-        console.log('Task update failed:', json);
         this.showUpdateErrorMessage(json);
       }
     } catch (error) {
@@ -170,11 +168,9 @@ export class SingletaskpopupComponent implements OnInit {
         const resp = await fetch(url, requestOptions);
 
         if (resp.ok) {
-            console.log('Contact deletion successful');
             window.location.reload();
         } else {
             const json = await resp.json();
-            console.log('Contact deletion failed:', json);
         }
     } catch (error) {
         console.log('Error during contact deletion:', error);

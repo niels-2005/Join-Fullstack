@@ -26,7 +26,7 @@
         </div>
         <button
           class="add-task-button"
-          (click)="openTaskField('add-task-field', 'board-container')"
+          (click)="openTaskField('add-task-field', 'board-container', '')"
         >
           Add task <img src="./assets/img/white-add-icon.png" alt="Add Icon" />
         </button>
@@ -167,7 +167,7 @@
                     ? task.assigned_to_names.split(",").length
                     : 0
                 }}</span>
-                <img src="/assets/img/contact-user.png" alt="User Image" />
+                <img src="./assets/img/contact-user.png" alt="User Image" />
               </div>
               <img
                 *ngIf="task.priority === 'U'"
@@ -252,5 +252,5 @@
 
 <app-addtaskboardbutton
   id="add-task-field"
-  class="add-task-container-position"
+  class="add-task-container-position d-none"
 ></app-addtaskboardbutton>

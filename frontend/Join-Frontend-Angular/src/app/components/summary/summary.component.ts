@@ -20,6 +20,7 @@ export class SummaryComponent implements OnInit {
 constructor(private taskService: TaskserviceService) {}
 
 ngOnInit(): void {
+  this.taskService.checkToken();
   this.getTasks();
   this.setGreetingTime();
   this.greetUser();
@@ -31,7 +32,6 @@ getTasks(){
       this.tasks = result;
       this.filterTasksByStatus();
       this.getNextDeadline();
-      console.log('Tasks:', this.tasks);
     },
     (error) => {
       console.error('Error:', error);

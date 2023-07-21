@@ -15,8 +15,8 @@ export class EditcontactpopupComponent {
 
   constructor(private popupService: AddtaskfieldserviceService, private contactService: ContactserviceService) {}
 
-  closeContactField(id1: string, id2: string){
-    this.popupService.closeTaskField(id1, id2);
+  closeContactField(id1: string, id2: string, id3: string){
+    this.popupService.closeTaskField(id1, id2, id3, '');
   }
 
   async deleteContact() {
@@ -36,14 +36,12 @@ export class EditcontactpopupComponent {
         const resp = await fetch(url, requestOptions);
 
         if (resp.ok) {
-            console.log('Contact deletion successful');
-            this.closeContactField('edit-contact-field', 'contacts-container');
+            this.closeContactField('edit-contact-field', 'contacts-container', 'add-contact-visible');
             this.contactService.getContacts();
             this.selectedContact = null;
             this.contactService.setSelectedContact(null);
         } else {
             const json = await resp.json();
-            console.log('Contact deletion failed:', json);
         }
     } catch (error) {
         console.log('Error during contact deletion:', error);
@@ -75,10 +73,8 @@ export class EditcontactpopupComponent {
       const json = await resp.json();
 
       if (resp.ok) {
-        console.log('Contact update successful');
-        this.closeContactField('edit-contact-field', 'contacts-container');
+        this.closeContactField('edit-contact-field', 'contacts-container', 'add-contact-visible');
       } else {
-        console.log('Contact update failed:', json);
         this.showUpdateErrorMessage(json);
       }
     } catch (error) {
@@ -98,5 +94,4 @@ export class EditcontactpopupComponent {
       element.innerHTML = error[0];
     }
   }
-
 }

@@ -173,25 +173,6 @@
   background-color: #D1D1D1;
 }
 
-.assigned-to-container {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border: 1px solid #d1d1d1 !important;
-  border-radius: 12px;
-  padding: 12px;
-  cursor: pointer;
-  font-size: 18px;
-  color: black;
-  height: 50px;
-  width: 500px;
-  img {
-    object-fit: contain;
-  }
-  span {
-    font-size: 22px;
-  }
-}
 
 .assigned-to-container-popup {
   display: flex;
@@ -232,6 +213,47 @@
     border-bottom: 1px solid #D1D1D1;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
+    max-height: 100px;
+    min-height: 60px;
+    overflow-y: auto;
+}
+
+.contact-dropdown-popup::-webkit-scrollbar {
+  width: 10px;
+}
+
+.contact-dropdown-popup::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.contact-dropdown-popup::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.contact-dropdown-popup::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.assigned-to-container-initials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.render-select-contacts-container {
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  span {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+  }
 }
 
 .task-added-to-board-popup {
@@ -256,6 +278,13 @@
 }
 
 
+@media(max-width: 1450px){
+  .add-task-container-position {
+    position: absolute;
+    left: -1200px !important;
+  }
+}
+
 @media(max-width: 1400px){
   h1 {
     margin-left: 100px !important;
@@ -263,6 +292,12 @@
   .add-task-content-container {
     justify-content: center;
     gap: 50px;
+  }
+}
+
+@media(max-width: 1320px){
+  .add-task-container-position {
+    left: -1000px !important;
   }
 }
 
@@ -275,6 +310,18 @@
 @media(max-width: 1175px){
   h1 {
     margin-left: 15px !important;
+  }
+}
+
+@media(max-width: 1180px){
+  .add-task-container-position {
+    left: -900px !important;
+  }
+}
+
+@media(max-width: 1085px){
+  .add-task-container-position {
+    left: -800px !important;
   }
 }
 

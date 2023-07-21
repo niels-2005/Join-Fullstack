@@ -28,7 +28,6 @@ export class RegisterComponent {
           this.switchToLoginContainer();
           this.hideOrShowPasswordService.setSignUpSuccess(true);
           this.disableSignUpField();
-          console.log('User Sign Up successful');
         } else {
           this.showSignUpErrorMessages(body);
         }
@@ -72,7 +71,6 @@ export class RegisterComponent {
   }
 
   showSignUpErrorMessages(result: any) {
-    console.log(result);
     this.showError('username-error', result.username);
     this.showError('email-error', result.email);
     this.showError('password1-error', result.password1);

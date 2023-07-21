@@ -51,5 +51,4 @@ export class KanbanprojecttoolheaderComponent implements OnInit {
   checkScreenSize() {
     this.isViewSmallEnough = window.innerWidth < 1001;
   }
-
 }

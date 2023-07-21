@@ -39,47 +39,74 @@
           <span id="category-error" class="error-message"></span>
           <div class="category-color-container">
             <span
+              tabindex="0"
               class="category-color"
               style="background-color: #8aa4ff"
               (click)="setColor('#8aa4ff')"
+              (keydown.enter)="setColor('#8aa4ff')"
             ></span>
             <span
+              tabindex="0"
               class="category-color"
               style="background-color: #ff0000"
               (click)="setColor('#ff0000')"
+              (keydown.enter)="setColor('#ff0000')"
             ></span>
             <span
+              tabindex="0"
               class="category-color"
               style="background-color: #2ad300"
               (click)="setColor('#2ad300')"
+              (keydown.enter)="setColor('#2ad300')"
             ></span>
             <span
+              tabindex="0"
               class="category-color"
               style="background-color: #ff8a00"
               (click)="setColor('#ff8a00')"
+              (keydown.enter)="setColor('#ff8a00')"
             ></span>
             <span
+              tabindex="0"
               class="category-color"
               style="background-color: #e200be"
               (click)="setColor('#e200be')"
+              (keydown.enter)="setColor('#e200be')"
             ></span>
             <span
+              tabindex="0"
               class="category-color"
               style="background-color: #0038ff"
               (click)="setColor('#0038ff')"
+              (keydown.enter)="setColor('#0038ff')"
             ></span>
           </div>
         </div>
-        <span class="span-titles padding-0-mobile">Assigned to</span>
+        <div class="assigned-to-container-initials">
+          <span class="span-titles padding-0-mobile">Assigned to</span>
+          <div class="render-select-contacts-container">
+            <ng-container *ngFor="let contact of contacts$ | async">
+              <span
+                *ngIf="isSelected(contact)"
+                [style.background]="contact.color"
+                >{{ getInitials(contact.name) }}</span
+              >
+            </ng-container>
+          </div>
+        </div>
         <div
+          #dropdown
+          tabindex="0"
           class="assigned-to-container-popup"
           (click)="showContacts = !showContacts"
+          (keydown.enter)="showContacts = !showContacts"
         >
           <div class="select-contacts-to-assign-popup">
             <span>Select contacts to assign</span>
             <img src="./assets/img/arrow-down.png" alt="" />
           </div>
           <div
+            #dropdown
             *ngIf="showContacts"
             class="contact-dropdown-popup"
             (click)="$event.stopPropagation()"
@@ -96,6 +123,7 @@
                   [checked]="contact.checked"
                   (change)="toggleContact(contact, $event)"
                   (click)="$event.stopPropagation()"
+                  (keydown.enter)="toggleContact(contact, $event)"
                 />
               </label>
             </div>
@@ -115,6 +143,18 @@
         <span class="span-titles">Prio</span>
         <div class="prio-container" required>
           <div
+            (keydown.enter)="
+              selectedPrio(
+                'prio-urgent',
+                'prio-medium',
+                'prio-low',
+                'bg-urgent-while-clicked',
+                'bg-medium-while-clicked',
+                'bg-low-while-clicked',
+                'U'
+              )
+            "
+            tabindex="0"
             class="prio-content-style bg-urgent transition-ease-in-out"
             id="prio-urgent"
             (click)="
@@ -132,6 +172,18 @@
             <span>Urgent</span>
           </div>
           <div
+            (keydown.enter)="
+              selectedPrio(
+                'prio-medium',
+                'prio-urgent',
+                'prio-low',
+                'bg-medium-while-clicked',
+                'bg-urgent-while-clicked',
+                'bg-low-while-clicked',
+                'M'
+              )
+            "
+            tabindex="0"
             class="prio-content-style bg-medium transition-ease-in-out"
             id="prio-medium"
             (click)="
@@ -149,6 +201,18 @@
             <span>Medium</span>
           </div>
           <div
+            (keydown.enter)="
+              selectedPrio(
+                'prio-low',
+                'prio-urgent',
+                'prio-medium',
+                'bg-low-while-clicked',
+                'bg-urgent-while-clicked',
+                'bg-medium-while-clicked',
+                'L'
+              )
+            "
+            tabindex="0"
             class="prio-content-style bg-low transition-ease-in-out"
             id="prio-low"
             (click)="
@@ -171,7 +235,7 @@
           <button
             type="button"
             class="button-style-white-bg cancel-button-style transition-ease-in-out mobile-width-clear-button"
-            (click)="closeTaskField('add-task-field', 'board-container')"
+            (click)="closeTaskField('add-task-field', 'board-container', '')"
           >
             Close
           </button>

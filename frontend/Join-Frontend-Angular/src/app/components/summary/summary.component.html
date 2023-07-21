@@ -74,30 +74,46 @@
                 />
               </div>
               <div class="show-task-prio-container">
-                <span class="font-weight-bold font-size-40">1</span>
+                <span class="font-weight-bold font-size-40">{{
+                  nextDeadlineTask ? "1" : "0"
+                }}</span>
                 <span>{{ getPriorityText(nextDeadlineTask?.priority) }}</span>
               </div>
             </div>
           </div>
           <div class="vertikal-line bg-color-grey height-100 ml-mr-24"></div>
           <div class="deadline-date-container">
-            <span class="font-size-20 font-weight-bold mobile-date-font">{{
-              formatDate(nextDeadlineTask?.deadline)
-            }}</span>
-            <span>Upcoming Deadline</span>
+            <span
+              class="font-size-20 font-weight-bold mobile-date-font"
+              *ngIf="nextDeadlineTask; else noDeadline"
+            >
+              {{ formatDate(nextDeadlineTask?.deadline) }}
+            </span>
+            <ng-template #noDeadline>
+              <span class="font-size-20 font-weight-bold mobile-date-font"
+                >No upcoming deadlines</span
+              >
+            </ng-template>
+            <span *ngIf="nextDeadlineTask">Upcoming Deadline</span>
           </div>
         </div>
         <div class="summary-tasks-bottom-container">
-          <div class="image-task-container change-todo-image-while-hover">
-            <div class="flex-container mr-64" routerLink="/board">
+          <div
+            class="image-task-container change-todo-image-while-hover"
+            routerLink="/board"
+          >
+            <div class="flex-container mr-64">
               <span class="font-size-48 font-weight-bold font-size-mobile">{{
                 todoTasks.length
               }}</span>
               <span class="font-size-20 text-align-center">To-do</span>
             </div>
           </div>
-          <div class="image-task-container change-done-image-while-hover">
-            <div class="flex-container mr-64" routerLink="/board">
+          <div
+            class="image-task-container change-done-image-while-hover"
+            routerLink="/board"
+          >
+            <div class="flex-container mr-64">
               <span class="font-size-48 font-weight-bold font-size-mobile">{{
                 doneTasks.length
               }}</span>

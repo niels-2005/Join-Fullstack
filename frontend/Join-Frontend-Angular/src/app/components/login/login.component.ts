@@ -43,10 +43,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('username', this.username);
         this.saveUserToLocalStorage();
         this.router.navigate(['/summary']);
-        console.log('User login successful');
       } else {
         this.showLoginErrorMessage(json);
-        console.log('User login failed:', json);
       }
     } catch (error) {
       console.log('Error during login:', error);
@@ -112,7 +110,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-
   deleteAnimations(){
     document.getElementById('login-container')!.classList.remove('fade-in-animation');
     document.getElementById('sign-in-button-container')!.classList.remove('fade-in-animation');
@@ -132,7 +129,7 @@ export class LoginComponent implements OnInit {
 
    guestLogin() {
     this.router.navigate(['/summary']);
-    localStorage.removeItem('username');
+    localStorage.setItem('username', 'Guest');
     const token = 'b9fe5e87c4b8499a8f103359c164f973bc132a0f'
     localStorage.setItem('token', token);
   }

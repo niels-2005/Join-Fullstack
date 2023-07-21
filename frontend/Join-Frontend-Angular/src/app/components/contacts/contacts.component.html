@@ -25,7 +25,13 @@
         >
         <span
           class="contact-edit-pencil"
-          (click)="openTaskField('edit-contact-field', 'contacts-container')"
+          (click)="
+            openTaskField(
+              'edit-contact-field',
+              'contacts-container',
+              'add-contact-visible'
+            )
+          "
           >Edit Contact
         </span>
       </div>
@@ -81,7 +87,13 @@
       <span>Contact Information</span>
       <span
         class="contact-edit-pencil"
-        (click)="openTaskField('edit-contact-field', 'contacts-container')"
+        (click)="
+          openTaskField(
+            'edit-contact-field',
+            'contacts-container',
+            'add-contact-visible'
+          )
+        "
         >Edit Contact
       </span>
     </div>
@@ -94,21 +106,41 @@
   </div>
   <button
     class="new-contact-button button-style-dark-bg transition-ease-in-out"
-    (click)="openTaskField('add-task-field', 'contacts-container')"
+    (click)="
+      openTaskField(
+        'add-task-field',
+        'contacts-container',
+        'add-contact-visible'
+      )
+    "
   >
     New contact
   </button>
 </div>
 
-<app-addcontactpopup
-  id="add-task-field"
-  class="add-task-container-position"
-></app-addcontactpopup>
-
-<app-editcontactpopup
-  id="edit-contact-field"
-  class="add-task-container-position"
-  *ngIf="selectedContact"
-  [selectedContact]="selectedContact"
-></app-editcontactpopup>
+<div
+  id="add-contact-visible"
+  (click)="
+    closeContactField(
+      'add-task-field',
+      'contacts-container',
+      'add-contact-visible',
+      'edit-contact-field'
+    )
+  "
 >
+  <app-addcontactpopup
+    id="add-task-field"
+    class="add-task-container-position"
+    (click)="$event.stopPropagation()"
+  ></app-addcontactpopup>
+
+  <app-editcontactpopup
+    id="edit-contact-field"
+    class="add-task-container-position"
+    *ngIf="selectedContact"
+    [selectedContact]="selectedContact"
+    (click)="$event.stopPropagation()"
+  ></app-editcontactpopup>
+  >
+</div>

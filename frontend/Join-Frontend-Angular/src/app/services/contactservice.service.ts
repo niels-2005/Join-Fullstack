@@ -9,6 +9,7 @@ export type Contact = {
   color: string;
   email: string;
   phone: string;
+  created_from: string;
   checked?: boolean;
 }
 
@@ -44,16 +45,21 @@ export class ContactserviceService {
     const response = await fetch("https://scholzniels.pythonanywhere.com/api/join/contacts/", requestOptions);
     const data = await response.json();
 
-    const contacts: Contact[] = data.map((contact: any): Contact => {
-      return {
-        id: contact.id,
-        name: contact.name,
-        email: contact.email,
-        phone: contact.phone,
-        initial: contact.name.charAt(0),
-        color: contact.color,
-      };
-    });
+    const username = localStorage.getItem('username');
+
+    const contacts: Contact[] = data
+      .filter((contact: any) => contact.created_from === username)
+      .map((contact: any): Contact => {
+        return {
+          id: contact.id,
+          name: contact.name,
+          email: contact.email,
+          phone: contact.phone,
+          initial: contact.name.charAt(0),
+          color: contact.color,
+          created_from: contact.created_from,
+        };
+      });
 
     this.contacts.next(this.groupByInitial(contacts));
     this.flatContacts.next(contacts);

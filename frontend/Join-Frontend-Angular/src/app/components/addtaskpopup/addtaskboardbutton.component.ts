@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { AddtaskfieldserviceService } from 'src/app/services/addtaskfieldservice.service';
 import { map, tap, first } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
@@ -6,6 +6,7 @@ import { ContactserviceService, Contact } from 'src/app/services/contactservice.
 import { DatePipe } from '@angular/common';
 import { TaskserviceService } from 'src/app/services/taskservice.service';
 import { Router } from '@angular/router';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-addtaskboardbutton',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 export class AddtaskboardbuttonComponent implements OnInit {
 
 
-  constructor(private popupSerivce: AddtaskfieldserviceService ,private fb: FormBuilder, private contactService: ContactserviceService, private datePipe: DatePipe, private taskService: TaskserviceService, private router: Router) {}
+  constructor(private eRef: ElementRef, private popupSerivce: AddtaskfieldserviceService ,private fb: FormBuilder, private contactService: ContactserviceService, private datePipe: DatePipe, private taskService: TaskserviceService, private router: Router) {}
 
   taskForm!: FormGroup;
   myControl = new FormControl();
@@ -28,8 +29,8 @@ export class AddtaskboardbuttonComponent implements OnInit {
 
   contacts$ = this.contactService.flatContacts$;
 
-  closeTaskField(id1: string, id2: string){
-    this.popupSerivce.closeTaskField(id1, id2);
+  closeTaskField(id1: string, id2: string, id3: string){
+    this.popupSerivce.closeTaskField(id1, id2, id3, '');
   }
 
   async ngOnInit(): Promise<void> {
@@ -60,7 +61,6 @@ export class AddtaskboardbuttonComponent implements OnInit {
       document.getElementById(id2)!.classList.remove(removedClassOne);
       document.getElementById(id3)!.classList.remove(removedClassTwo);
       this.selectedPriority = prio;
-      console.log(this.selectedPriority);
     }, 100);
   }
 
@@ -73,13 +73,12 @@ export class AddtaskboardbuttonComponent implements OnInit {
     const taskData = {
       ...this.taskForm.value,
       color: this.selectedColor,
+      created_from: localStorage.getItem('username'),
       assigned_to_names: this.taskForm.get('assignedTo')?.value,
       deadline: this.datePipe.transform(this.taskForm.get('dueDate')?.value, 'yyyy-MM-dd'),
       priority: this.selectedPriority,
       status: "todo"
     };
-
-    console.log(taskData);
 
     const requestOptions: RequestInit = {
       method: 'POST',
@@ -90,7 +89,6 @@ export class AddtaskboardbuttonComponent implements OnInit {
     fetch("https://scholzniels.pythonanywhere.com/api/join/tasks/", requestOptions)
       .then(response => {
         if (response.ok) {
-          console.log('Task creation successful');
           this.showTaskAddedToBoard();
         } else {
           response.json().then(data => {
@@ -104,7 +102,7 @@ export class AddtaskboardbuttonComponent implements OnInit {
   }
 
   showTaskAddedToBoard(){
-    this.closeTaskField('add-task-field', 'board-container');
+    this.closeTaskField('add-task-field', 'board-container', '');
     setTimeout(() => {
       window.location.reload();
     }, 200);
@@ -117,7 +115,6 @@ export class AddtaskboardbuttonComponent implements OnInit {
     this.showError('assigned-to-error', data.assigned_to_names);
     this.showError('date-error', data.deadline);
     this.showError('priority-error', data.priority);
-    console.log('Contact creation failed:', data);
   }
 
   showError(elementId: string, error: string[] | undefined) {
@@ -137,6 +134,7 @@ export class AddtaskboardbuttonComponent implements OnInit {
   }
 
   toggleContact(contact: any, event: Event) {
+    event.preventDefault();
     event.stopPropagation();
     contact.checked = !contact.checked;
     this.updateAssignedTo();
@@ -158,7 +156,31 @@ export class AddtaskboardbuttonComponent implements OnInit {
     return new FormControl(contact.checked || false);
   }
 
+  @ViewChild('dropdown') dropdown!: ElementRef;
 
+@HostListener('document:click', ['$event'])
+onDocumentClick(event: MouseEvent): void {
+  const clickedInside = this.dropdown.nativeElement.contains(event.target);
+  if (!clickedInside) {
+    this.showContacts = false;
+  }
+}
 
+getInitials(name: string): string {
+  return name.split(' ').map((n)=>n[0]).join('');
+}
+
+getSelectedContactInitials() {
+  let selectedContactsInitials: string[] = [];
+  this.contacts$.pipe(
+    map(contacts => contacts.filter(contact => contact.checked)),
+    map(contacts => contacts.map(contact => this.getInitials(contact.name)))
+  ).subscribe(initials => selectedContactsInitials = initials);
+  return selectedContactsInitials.join(", ");
+}
+
+isSelected(contact: any): boolean {
+  return contact.checked;
+}
 
 }

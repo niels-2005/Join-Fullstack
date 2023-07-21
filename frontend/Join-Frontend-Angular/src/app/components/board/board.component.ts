@@ -20,6 +20,7 @@ export class BoardComponent implements OnInit {
 
   selectedTask: any;
 
+
   onTaskClick(task: any) {
     this.popupService.addOpacity();
     this.selectedTask = null;
@@ -35,6 +36,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTasks();
+    this.taskService.checkToken();
   }
 
   getTasks() {
@@ -56,7 +58,6 @@ export class BoardComponent implements OnInit {
               break;
           }
         }
-        console.log('Tasks:', result);
       },
       (error) => {
         console.error('Error:', error);
@@ -90,9 +91,10 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  openTaskField(id1: string, id2: string) {
-    this.popupService.openTaskField(id1, id2);
+  openTaskField(id1: string, id2: string, id3: string) {
+    this.popupService.openTaskField(id1, id2, id3);
   }
+
 
   getStatus(id: string) {
     switch (id) {

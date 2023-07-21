@@ -3,7 +3,13 @@
     src="./assets/img/cross-icon.png"
     alt="X Icon"
     class="cross-image"
-    (click)="closeContactField('edit-contact-field', 'contacts-container')"
+    (click)="
+      closeContactField(
+        'edit-contact-field',
+        'contacts-container',
+        'add-contact-visible'
+      )
+    "
   />
   <div class="contact-popup-left-content">
     <img src="./assets/img/Join-icon.png" alt="Join Logo" />

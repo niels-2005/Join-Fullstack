@@ -1,172 +1,238 @@
-<div *ngIf="selectedTask" class="position-absolute">
-  <div class="single-task-details" id="task-details-container">
-    <div [style.background-color]="selectedTask.color" class="category-style">
-      {{ selectedTask.category }}
-    </div>
-    <h2>{{ selectedTask.title }}</h2>
-    <span class="task-description">{{ selectedTask.description }}</span>
-    <span
-      ><span class="task-titles-font-weight-bold">Due date:</span>
-      <span class="date-styling"> {{ selectedTask.deadline }}</span>
-    </span>
-    <div class="right-priority-container">
-      <span class="task-titles-font-weight-bold">Priority:</span>
-      <div
-        class="single-task-prio-container bg-red"
-        *ngIf="selectedTask.priority === 'U'"
-      >
-        <span>Urgent</span>
-        <img src="./assets/img/urgent-prio-white.png" alt="Urgent white Icon" />
-      </div>
-      <div
-        class="single-task-prio-container bg-yellow"
-        *ngIf="selectedTask.priority === 'M'"
-      >
-        <span>Medium</span>
-        <img src="./assets/img/medium-prio-white.png" alt="Medium white Icon" />
-      </div>
-      <div
-        class="single-task-prio-container bg-green"
-        *ngIf="selectedTask.priority === 'L'"
-      >
-        <span>Low</span>
-        <img src="./assets/img/low-prio-white.png" alt="Low white Icon" />
-      </div>
-    </div>
-    <div class="assigned-to-content-container">
-      <span class="task-titles-font-weight-bold">Assigned to:</span>
-      <div
-        *ngFor="
-          let name of selectedTask.assigned_to_names.split(', ');
-          let i = index
-        "
-        class="assigned-to-containerrr"
-      >
-        <span *ngIf="name">{{ i + 1 }}</span>
-        <span>{{ name }}</span>
-      </div>
-    </div>
-    <img
-      src="./assets/img/cross-icon.png"
-      alt="Close Icon"
-      class="cross-image-task"
-      (click)="closePopup()"
-    />
-    <div class="delete-edit-container">
-      <span class="delete-span" (click)="deleteTask()"></span>
-      <span
-        class="edit-span"
-        (click)="
-          changeContainer('task-details-container', 'edit-task-container')
-        "
-      ></span>
-    </div>
-  </div>
-
-  <div class="edit-task-container d-none" id="edit-task-container">
-    <img
-      src="./assets/img/cross-icon.png"
-      alt="Close Icon"
-      class="cross-image-task"
-      (click)="closePopup()"
-    />
-    <span class="span-titles mt-25">Title</span>
-    <input type="text" class="input-styling" [(ngModel)]="selectedTask.title" />
-    <span class="span-titles">Description</span>
-    <textarea [(ngModel)]="selectedTask.description"></textarea>
-    <span class="span-titles">Due date</span>
-    <input
-      type="date"
-      class="input-styling"
-      [(ngModel)]="selectedTask.deadline"
-    />
-    <span class="span-titles">Prio</span>
-    <div class="prio-container" required>
-      <div
-        class="prio-content-styling bg-urgent transition-ease-in-out"
-        [ngClass]="{ 'bg-urgent-while-clicked': selectedTask.priority === 'U' }"
-        id="prio-urgent"
-        (click)="
-          selectedPrio(
-            'prio-urgent',
-            'prio-medium',
-            'prio-low',
-            'bg-urgent-while-clicked',
-            'bg-medium-while-clicked',
-            'bg-low-while-clicked',
-            'U'
-          )
-        "
-      >
-        <span>Urgent</span>
-      </div>
-      <div
-        class="prio-content-styling bg-medium transition-ease-in-out"
-        [ngClass]="{ 'bg-medium-while-clicked': selectedTask.priority === 'M' }"
-        id="prio-medium"
-        (click)="
-          selectedPrio(
-            'prio-medium',
-            'prio-urgent',
-            'prio-low',
-            'bg-medium-while-clicked',
-            'bg-urgent-while-clicked',
-            'bg-low-while-clicked',
-            'M'
-          )
-        "
-      >
-        <span>Medium</span>
-      </div>
-      <div
-        class="prio-content-styling bg-low transition-ease-in-out"
-        [ngClass]="{ 'bg-low-while-clicked': selectedTask.priority === 'L' }"
-        id="prio-low"
-        (click)="
-          selectedPrio(
-            'prio-low',
-            'prio-urgent',
-            'prio-medium',
-            'bg-low-while-clicked',
-            'bg-urgent-while-clicked',
-            'bg-medium-while-clicked',
-            'L'
-          )
-        "
-      >
-        <span>Low</span>
-      </div>
-    </div>
-    <span class="span-titles">Assigned to</span>
+<div *ngIf="selectedTask" (click)="closePopup()" class="fullscreen-overlay">
+  <div class="position-absolute">
     <div
-      class="assigned-to-containerrrr mb-56"
-      (click)="showContacts = !showContacts"
+      class="single-task-details"
+      id="task-details-container"
+      (click)="$event.stopPropagation()"
     >
-      <div class="select-contacts-to-assign">
-        <span>Select contacts to assign</span>
-        <img src="./assets/img/arrow-down.png" alt="" />
+      <div [style.background-color]="selectedTask.color" class="category-style">
+        {{ selectedTask.category }}
       </div>
-      <div
-        *ngIf="showContacts"
-        class="contact-dropdown-edit"
-        (click)="$event.stopPropagation()"
-      >
-        <div *ngFor="let contact of contacts$ | async" class="dropdown-contact">
-          <label class="contact-item">
-            <span>{{ contact.name }}</span>
-            <input
-              type="checkbox"
-              class="input-checkbox"
-              [checked]="contact.checked"
-              (click)="$event.stopPropagation()"
-              (change)="toggleContact(contact, $event)"
-            />
-          </label>
+      <h2>{{ selectedTask.title }}</h2>
+      <span class="task-description">{{ selectedTask.description }}</span>
+      <span
+        ><span class="task-titles-font-weight-bold">Due date:</span>
+        <span class="date-styling"> {{ selectedTask.deadline }}</span>
+      </span>
+      <div class="right-priority-container">
+        <span class="task-titles-font-weight-bold">Priority:</span>
+        <div
+          class="single-task-prio-container bg-red"
+          *ngIf="selectedTask.priority === 'U'"
+        >
+          <span>Urgent</span>
+          <img
+            src="./assets/img/urgent-prio-white.png"
+            alt="Urgent white Icon"
+          />
+        </div>
+        <div
+          class="single-task-prio-container bg-yellow"
+          *ngIf="selectedTask.priority === 'M'"
+        >
+          <span>Medium</span>
+          <img
+            src="./assets/img/medium-prio-white.png"
+            alt="Medium white Icon"
+          />
+        </div>
+        <div
+          class="single-task-prio-container bg-green"
+          *ngIf="selectedTask.priority === 'L'"
+        >
+          <span>Low</span>
+          <img src="./assets/img/low-prio-white.png" alt="Low white Icon" />
         </div>
       </div>
+      <div class="assigned-to-content-container">
+        <span class="task-titles-font-weight-bold">Assigned to:</span>
+        <div
+          *ngFor="
+            let name of selectedTask.assigned_to_names.split(', ');
+            let i = index
+          "
+          class="assigned-to-containerrr"
+        >
+          <span *ngIf="name">{{ i + 1 }}</span>
+          <span>{{ name }}</span>
+        </div>
+      </div>
+      <img
+        src="./assets/img/cross-icon.png"
+        alt="Close Icon"
+        class="cross-image-task"
+        (click)="closePopup()"
+      />
+      <div class="delete-edit-container">
+        <span class="delete-span" (click)="deleteTask()"></span>
+        <span
+          class="edit-span"
+          (click)="
+            changeContainer('task-details-container', 'edit-task-container')
+          "
+        ></span>
+      </div>
     </div>
-    <span class="ok-span" (click)="editTask()"
-      >Ok <img src="./assets/img/done.png" alt="Checked Icon"
-    /></span>
+
+    <div
+      class="edit-task-container d-none"
+      id="edit-task-container"
+      (click)="$event.stopPropagation()"
+    >
+      <img
+        src="./assets/img/cross-icon.png"
+        alt="Close Icon"
+        class="cross-image-task"
+        (click)="closePopup()"
+      />
+      <span class="span-titles mt-25">Title</span>
+      <input
+        type="text"
+        class="input-styling"
+        [(ngModel)]="selectedTask.title"
+      />
+      <span class="span-titles">Description</span>
+      <textarea [(ngModel)]="selectedTask.description"></textarea>
+      <span class="span-titles">Due date</span>
+      <input
+        type="date"
+        class="input-styling"
+        [(ngModel)]="selectedTask.deadline"
+      />
+      <span class="span-titles">Prio</span>
+      <div class="prio-container" required>
+        <div
+          (keydown.enter)="
+            selectedPrio(
+              'prio-urgent',
+              'prio-medium',
+              'prio-low',
+              'bg-urgent-while-clicked',
+              'bg-medium-while-clicked',
+              'bg-low-while-clicked',
+              'U'
+            )
+          "
+          tabindex="0"
+          class="prio-content-styling bg-urgent transition-ease-in-out"
+          [ngClass]="{
+            'bg-urgent-while-clicked': selectedTask.priority === 'U'
+          }"
+          id="prio-urgent"
+          (click)="
+            selectedPrio(
+              'prio-urgent',
+              'prio-medium',
+              'prio-low',
+              'bg-urgent-while-clicked',
+              'bg-medium-while-clicked',
+              'bg-low-while-clicked',
+              'U'
+            )
+          "
+        >
+          <span>Urgent</span>
+        </div>
+        <div
+          (keydown.enter)="
+            selectedPrio(
+              'prio-medium',
+              'prio-urgent',
+              'prio-low',
+              'bg-medium-while-clicked',
+              'bg-urgent-while-clicked',
+              'bg-low-while-clicked',
+              'M'
+            )
+          "
+          tabindex="0"
+          class="prio-content-styling bg-medium transition-ease-in-out"
+          [ngClass]="{
+            'bg-medium-while-clicked': selectedTask.priority === 'M'
+          }"
+          id="prio-medium"
+          (click)="
+            selectedPrio(
+              'prio-medium',
+              'prio-urgent',
+              'prio-low',
+              'bg-medium-while-clicked',
+              'bg-urgent-while-clicked',
+              'bg-low-while-clicked',
+              'M'
+            )
+          "
+        >
+          <span>Medium</span>
+        </div>
+        <div
+          (keydown.enter)="
+            selectedPrio(
+              'prio-low',
+              'prio-urgent',
+              'prio-medium',
+              'bg-low-while-clicked',
+              'bg-urgent-while-clicked',
+              'bg-medium-while-clicked',
+              'L'
+            )
+          "
+          tabindex="0"
+          class="prio-content-styling bg-low transition-ease-in-out"
+          [ngClass]="{ 'bg-low-while-clicked': selectedTask.priority === 'L' }"
+          id="prio-low"
+          (click)="
+            selectedPrio(
+              'prio-low',
+              'prio-urgent',
+              'prio-medium',
+              'bg-low-while-clicked',
+              'bg-urgent-while-clicked',
+              'bg-medium-while-clicked',
+              'L'
+            )
+          "
+        >
+          <span>Low</span>
+        </div>
+      </div>
+      <span class="span-titles">Assigned to</span>
+      <div
+        tabindex="0"
+        class="assigned-to-containerrrr mb-56"
+        (click)="showContacts = !showContacts"
+        (keydown.enter)="showContacts = !showContacts"
+      >
+        <div class="select-contacts-to-assign">
+          <span>Select contacts to assign</span>
+          <img src="./assets/img/arrow-down.png" alt="" />
+        </div>
+        <div
+          *ngIf="showContacts"
+          class="contact-dropdown-edit"
+          (click)="$event.stopPropagation()"
+        >
+          <div
+            *ngFor="let contact of contacts$ | async"
+            class="dropdown-contact"
+          >
+            <label class="contact-item">
+              <span>{{ contact.name }}</span>
+              <input
+                type="checkbox"
+                class="input-checkbox"
+                [checked]="contact.checked"
+                (click)="$event.stopPropagation()"
+                (change)="toggleContact(contact, $event)"
+                (keydown.enter)="toggleContact(contact, $event)"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <span class="ok-span" (click)="editTask()"
+        >Ok <img src="./assets/img/done.png" alt="Checked Icon"
+      /></span>
+    </div>
   </div>
 </div>

@@ -7,6 +7,7 @@ import { BoardComponent } from './components/board/board.component';
 import { AddtaskComponent } from './components/addtask/addtask.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { HelpComponent } from './components/help/help.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'add-task', component: AddtaskComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'help', component: HelpComponent},
+  { path: 'resetpassword/:uid/:token', component: ResetpasswordComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full'},
 ];
 

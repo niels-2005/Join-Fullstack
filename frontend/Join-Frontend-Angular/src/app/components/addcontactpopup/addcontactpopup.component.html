@@ -3,7 +3,13 @@
     src="./assets/img/cross-icon.png"
     alt="X Icon"
     class="cross-image"
-    (click)="closeContactField('add-task-field', 'contacts-container')"
+    (click)="
+      closeContactField(
+        'add-task-field',
+        'contacts-container',
+        'add-contact-visible'
+      )
+    "
   />
   <div class="contact-popup-left-content">
     <img src="./assets/img/Join-icon.png" alt="Join Logo" />
@@ -55,7 +61,13 @@
       <div class="add-task-button-container mt-50">
         <button
           class="button-style-white-bg cancel-button-style transition-ease-in-out"
-          (click)="closeContactField('add-task-field', 'contacts-container')"
+          (click)="
+            closeContactField(
+              'add-task-field',
+              'contacts-container',
+              'add-contact-visible'
+            )
+          "
         >
           Cancel
         </button>

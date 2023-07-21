@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,13 +7,12 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class TaskserviceService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   getTasks(): Observable<any> {
     const myHeaders = new Headers();
     const token = localStorage.getItem('token');
     myHeaders.append("Authorization", `Token ` + token);
-    console.log(myHeaders);
 
     const requestOptions: RequestInit = {
       method: 'GET',
@@ -21,12 +21,14 @@ export class TaskserviceService {
     };
 
     const url = "https://scholzniels.pythonanywhere.com/api/join/tasks/";
+    const username = localStorage.getItem('username');
 
     return new Observable((subscriber) => {
       fetch(url, requestOptions)
         .then(response => response.json())
         .then(result => {
-          subscriber.next(result);
+          const filteredTasks = result.filter((task: any) => task.created_from === username);
+          subscriber.next(filteredTasks);
           subscriber.complete();
         })
         .catch(error => {
@@ -34,6 +36,7 @@ export class TaskserviceService {
         });
     });
   }
+
 
   updateStatus(taskId: number, newStatus: string): Observable<any> {
     const myHeaders = new Headers();
@@ -65,6 +68,13 @@ export class TaskserviceService {
 
   filterTasksByStatus(tasks: any[], status: string): any[] {
     return tasks.filter((task) => task.status === status);
+  }
+
+  checkToken(){
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/login']);
+    }
   }
 
 }

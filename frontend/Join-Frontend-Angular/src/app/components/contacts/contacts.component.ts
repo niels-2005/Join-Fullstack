@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AddtaskfieldserviceService } from 'src/app/services/addtaskfieldservice.service';
 import { ContactserviceService } from 'src/app/services/contactservice.service';
+import { Contact } from 'src/app/services/contactservice.service';
+import { TaskserviceService } from 'src/app/services/taskservice.service';
 
 @Component({
   selector: 'app-contacts',
@@ -12,16 +14,24 @@ export class ContactsComponent {
   contacts!: { [key: string]: any };
   selectedContact: any;
 
-  constructor(private contactService: ContactserviceService, private popupService: AddtaskfieldserviceService) {
-    this.contactService.contacts$.subscribe(groupedContacts => {
-      this.contacts = groupedContacts;
+  constructor(private contactService: ContactserviceService, private popupService: AddtaskfieldserviceService, private tokenService: TaskserviceService) { }
+
+  async ngOnInit(): Promise<void> {
+    this.showRightContacts();
+    this.subscribeToSelectedContact();
+    this.contactService.getContacts();
+    this.tokenService.checkToken();
+  }
+
+  showRightContacts(){
+    const username = localStorage.getItem('username');
+
+    this.contactService.flatContacts$.subscribe(allContacts => {
+      const userContacts = allContacts.filter((contact: Contact) => contact.created_from === username);
+      this.contacts = this.groupByInitial(userContacts);
     });
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.contactService.getContacts();
-    this.subscribeToSelectedContact();
-  }
 
   subscribeToSelectedContact(): void {
     this.contactService.selectedContact$.subscribe(
@@ -47,12 +57,9 @@ export class ContactsComponent {
     return name.split(' ').map((n,i,a)=> i === 0 || i+1 === a.length ? n[0] : null).join('').toUpperCase();
   }
 
-  openTaskField(id1: string, id2: string) {
-    this.popupService.openTaskField(id1, id2);
+  openTaskField(id1: string, id2: string, id3: string) {
+    this.popupService.openTaskField(id1, id2, id3);
   }
-
-
-
 
   onContactClick(contact: any) {
     this.selectedContact = contact;
@@ -63,4 +70,7 @@ export class ContactsComponent {
     }
   }
 
+  closeContactField(id1: string, id2: string, id3: string, id4: string){
+    this.popupService.closeTaskField(id1, id2, id3, id4);
+  }
 }

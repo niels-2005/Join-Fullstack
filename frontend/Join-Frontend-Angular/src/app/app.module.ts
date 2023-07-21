@@ -28,6 +28,7 @@ import { HelpComponent } from './components/help/help.component';
 import { GroundbarComponent } from './components/groundbar/groundbar.component';
 import { DatePipe } from '@angular/common';
 import { SingletaskpopupComponent } from './components/singletaskpopup/singletaskpopup.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SingletaskpopupComponent } from './components/singletaskpopup/singletas
     HelpComponent,
     GroundbarComponent,
     SingletaskpopupComponent,
+    ResetpasswordComponent,
   ],
   imports: [
     BrowserModule,
